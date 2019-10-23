@@ -1,29 +1,32 @@
 server:
-  port: 8761
+  port: 8762
 
 spring:
   application:
-    name: registerCloudServer
+    name: marketing-eurake
   cloud:
     config:
       uri: http://localhost:8761/
       label: master
 
 
-
 eureka:
   instance:
-    hostname: localhost
-    prefer-ip-address: true
+    hostname: 127.0.0.1
+    prefer-ip-address: false
     instance-id: ${eureka.instance.hostname}:${server.port}
+    appname: ${spring.application.name}
   client:
         #默认情况下，应用会向注册中心（也是它自己）注册它自己，设置为false表示禁止这种默认行为
-    register-withEureka: false
+    register-withEureka: true
         #表示不去检索其他的Eureka Server获取注册信息，因为服务注册中心本身的职责就是维护服务实例，它也不需要去检索其他服务
     fetch-registry: false
     service-url:
         #对外暴露的地址
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://192.168.199.115:9000/eureka
+    registry-fetch-interval-seconds: 5
+  server:
+    enable-self-preservation: true
 
 spring.cloud.vault.discovery:
     enabled: true
