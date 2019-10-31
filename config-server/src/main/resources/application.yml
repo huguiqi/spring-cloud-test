@@ -1,0 +1,56 @@
+server:
+  port: 8883
+  servlet:
+    context-path: /
+
+spring:
+  application:
+      name: config-server
+  kafka:
+      bootstrap-servers: 127.0.0.1:9092
+      consumer:
+          group-id: kafka-bus
+  profiles:
+      active: local
+  cloud:
+    config:
+      server:
+        git:
+          uri: http://gitlab.rios.com/bzy-server/bzy-config-repo.git
+          clone-on-start: true
+          username: sam.hu
+          password: 123456
+          default-label: test_2019_10_23
+    bus:
+      enabled: true
+      trace:
+        enabled: true
+      refresh:
+        enabled: true
+
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+    instance-id: ${eureka.instance.hostname}:${server.port}
+    nonSecurePort: ${server.port}
+  client:
+    service-url:
+      defaultZone: http://localhost:9999/eureka
+    healthcheck:
+          enabled: true
+
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

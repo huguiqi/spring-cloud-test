@@ -1,0 +1,50 @@
+server:
+  port: 9999
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: eureka
+  cloud:
+    config:
+      label: test_2019_10_23
+      uri: http://localhost:8883
+    bus:
+      enabled: true
+      trace:
+        enabled: true
+  profiles:
+    active: local
+  kafka:
+      bootstrap-servers: 127.0.0.1:9092
+
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: false
+    nonSecurePort: ${server.port}
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:9999/eureka
+    register-with-eureka: false
+
+
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+
+
+spring.cloud.vault:
+    config.lifecycle.enabled: true
+    fail-fast: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

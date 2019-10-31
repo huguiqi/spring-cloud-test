@@ -1,0 +1,55 @@
+server:
+    port: 9001
+
+spring:
+  application:
+      name: appservice
+  profiles:
+      active: local
+  cloud:
+      config:
+        label: test_2019_10_23
+        uri: http://localhost:8883
+      bus:
+        refresh:
+          enabled: true
+  kafka:
+      bootstrap-servers: 127.0.0.1:9092
+
+
+eureka:
+    instance:
+        prefer-ip-address: true
+        nonSecurePort: 80
+    client:
+        service-url:
+            defaultZone: http://localhost:9999/eureka
+        register-with-eureka: true
+
+
+
+logging:
+    level:
+        org:
+            springframework:
+                security: DEBUG
+
+
+
+
+#ribbon:
+#  restclient:
+#      enabled: true
+
+# 启用feign
+feign:
+  hystrix:
+    enabled: true
+
+logging.level.project.user.UserClient: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
