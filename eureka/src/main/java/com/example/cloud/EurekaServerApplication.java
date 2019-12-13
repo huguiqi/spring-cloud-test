@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 @SpringBootApplication
 @EnableEurekaServer
-@ComponentScan(basePackages = "com.example.controller")
 public class EurekaServerApplication {
 
 	public static void main(String[] args) {

@@ -1,5 +1,5 @@
 server:
-    port: 9001
+    port: 9000
 
 spring:
   application:
@@ -8,7 +8,7 @@ spring:
       active: local
   cloud:
       config:
-        label: test_2019_10_23
+        label: master
         uri: http://localhost:8883
       bus:
         refresh:

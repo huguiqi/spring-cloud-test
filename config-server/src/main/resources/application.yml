@@ -16,11 +16,11 @@ spring:
     config:
       server:
         git:
-          uri: http://gitlab.rios.com/bzy-server/bzy-config-repo.git
+          uri: http://gitlab.rios.com:8080/servers/config-repo.git
           clone-on-start: true
           username: sam.hu
-          password: 123456
-          default-label: test_2019_10_23
+          password: 12345678
+          default-label: master
     bus:
       enabled: true
       trace:
